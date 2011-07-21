@@ -14,13 +14,25 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-	if a == b and a == c and b == c
-		:equilateral
-	elsif a == b or a == c or b == c
+	
+	if (a < 0) || (b < 0) || (c < 0) || ((a + b) <= c) || ((c + a) <= b) || ((b + c) <= a)
+		raise TriangleError
+	end
+
+	if (a == b) and (a == c)
+		if (a == 0)
+			raise TriangleError	
+		else
+			:equilateral
+		end
+
+	elsif (a == b) or (a == c) or (b == c)
 		:isosceles
-	else
+	elsif (a != b) and (a != c) and (b != c)
 		:scalene
-	end 
+	else
+		raise TriangleError
+	end
 end
 
 # Error class used in part 2.  No need to change this code.
